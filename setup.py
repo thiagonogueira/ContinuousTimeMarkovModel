@@ -97,7 +97,7 @@ setup(
     install_requires=[
         'line_profiler >= 1.0',
         'scipy == 0.16.0',
-        'Theano == 0.7.0',
+        # 'Theano == 0.7.0',
         'Cython == 0.23.3',
         'numpy == 1.9.3',
         'pymc3 == dev'
