@@ -96,21 +96,20 @@ setup(
     ],
     install_requires=[
         'line_profiler >= 1.0',
-        'scipy == 0.16.0',
-        # 'Theano == 0.7.0',
-        'Cython == 0.23.3',
-        'numpy == 1.9.3',
-        'pymc3 == dev'
+        'scipy <= 1.2.1',
+        # 'Theano >= 1.0.4',
+        'Cython >= 0.23.3',
+        'numpy >= 1.9.3',
+        'pymc3@git+https://github.com/evidation-health/pymc3.git#egg=pymc3'
         # eg: 'aspectlib==1.1.1', 'six>=1.7',
     ],
     dependency_links = [
-        'git+https://github.com/evidation-health/pymc3.git#egg=pymc3-dev'
     ],
-    extras_require={
-        # eg:
-        #   'rst': ['docutils>=0.11'],
-        #   ':python_version=="2.6"': ['argparse'],
-    },
+    # extras_require={
+    #     # eg:
+    #     #   'rst': ['docutils>=0.11'],
+    #     #   ':python_version=="2.6"': ['argparse'],
+    # },
     entry_points={
         'console_scripts': [
             'ContinuousTimeMarkovModel = ContinuousTimeMarkovModel.__main__:main',

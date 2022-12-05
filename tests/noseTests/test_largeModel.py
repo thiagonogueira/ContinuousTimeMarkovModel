@@ -165,8 +165,8 @@ class logpTests(unittest.TestCase):
 #        pS0_Correct = load(open('pS0_Test_data.pkl', 'rb'))
 #
 #        pSnt_Test = np.zeros((self.N,self.max_obs,self.M))
-#        for n in xrange(self.N):
-#            for t in xrange(self.T[n]-1):
+#        for n in range(self.N):
+#            for t in range(self.T[n]-1):
 #                pSnt_Test[n,t] = self.forS.compute_pSt_GIVEN_St1(n,t,self.myTestPoint['S'][n,t])
 #        pSnt_Correct = load(open('pSnt_Test_data.pkl', 'rb'))
 #
@@ -179,9 +179,9 @@ class logpTests(unittest.TestCase):
         pS0_Correct = load(open('pS0_Test_data.pkl', 'rb'))
 
         pSnt_Test = np.zeros((self.nObs,self.M))
-        for n in xrange(self.N):
+        for n in range(self.N):
             n0 = self.zeroIndices[n]
-            for t in xrange(self.T[n]-1):
+            for t in range(self.T[n]-1):
                 pSnt_Test[n0+t] = self.forS.compute_pSt_GIVEN_St1(n0,t,self.myTestPoint['S'][n0+t])
         pSnt_Test = pSnt_Test / pSnt_Test.sum(axis=1)[:,np.newaxis]
         pSnt_Correct = load(open('pSnt_Test_data.pkl', 'rb'))
