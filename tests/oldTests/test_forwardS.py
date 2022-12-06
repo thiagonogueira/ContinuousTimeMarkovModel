@@ -41,4 +41,4 @@ with model:
     step2 = ForwardS(vars=[S], X=X, observed_jumps=observed_jumps)
     step2.step_sizes = np.array([0.1, 1, 100])
     pS = step2.compute_pS(Q_test, 5)
-    print pS
+    print(pS)

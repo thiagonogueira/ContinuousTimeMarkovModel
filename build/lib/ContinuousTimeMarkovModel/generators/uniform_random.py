@@ -20,7 +20,7 @@ import random
 def main():
     n,k = parse_args()
     for i in range(n):
-        print random.randint(1, k);
+        print(random.randint(1, k));
     
 if __name__ == '__main__':
     main()

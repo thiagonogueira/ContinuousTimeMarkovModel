@@ -51,7 +51,7 @@ def loadAnchors(dataDirectory):
             comorbidityNames.append(text[0])
             comorbAnchors = []
             for codeStr in text[1:]:
-                for key in icd9Map.keys():
+                for key in list(icd9Map.keys()):
                     l = re.search(codeStr,key)
                     if l is not None:
                         comorbAnchors.append(icd9Map[l.group(0)])
@@ -76,7 +76,7 @@ for user in claimsDF.groupby('pers_uniq_id'):
 #    user[1].date_of_service.max()/
     nbins = np.ceil(user[1].date_of_service.max()/args.timeperiod)
     bins = np.arange(0,(nbins+1)*args.timeperiod,args.timeperiod)
-    user[1].loc[:,'timeperiod'] = pd.cut(user[1].loc[:,'date_of_service'], bins, include_lowest=True,labels = range(int(nbins)))
+    user[1].loc[:,'timeperiod'] = pd.cut(user[1].loc[:,'date_of_service'], bins, include_lowest=True,labels = list(range(int(nbins))))
     user[1].loc[:,'timeperiod'] = user[1].loc[:,'timeperiod'].dropna().astype(int)
     tstepClaims.append(user[1][['pers_uniq_id','timeperiod','primary_diag_cd']].drop_duplicates())
 

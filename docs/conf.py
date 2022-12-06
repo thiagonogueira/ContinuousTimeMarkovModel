@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
+
 
 import os
 
@@ -20,11 +20,11 @@ if os.getenv('SPELLCHECK'):
 
 source_suffix = '.rst'
 master_doc = 'index'
-project = u'ContinuousTimeMarkovModel'
-year = u'2015'
-author = u'Evidation Health, Inc.'
+project = 'ContinuousTimeMarkovModel'
+year = '2015'
+author = 'Evidation Health, Inc.'
 copyright = '{0}, {1}'.format(year, author)
-version = release = u'0.1.0'
+version = release = '0.1.0'
 # on_rtd is whether we are on readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 

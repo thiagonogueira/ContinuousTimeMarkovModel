@@ -232,10 +232,10 @@ class ForwardX(ArrayStepShared):
         logp = 0.0
         for n in range(self.N):
             n0 = self.zeroIndices[n]
-            logp += np.log(pXt[n0,range(self.K),0,X[n0]]).sum()
+            logp += np.log(pXt[n0,list(range(self.K)),0,X[n0]]).sum()
             for t in range(0,self.T[n]-1):
                 X[n0+t+1] = self.sampleState(pXt[n0+t+1][np.arange(0,self.K),X[n0+t]])
-                logp += np.log(pXt[n0+t+1,range(self.K),X[n0+t],X[n0+t+1]]).sum()
+                logp += np.log(pXt[n0+t+1,list(range(self.K)),X[n0+t],X[n0+t+1]]).sum()
 #        for k in range(self.K):
 #            LikelihoodOfXk = self.computeLikelihoodOfXk(k,X,Z,L)
 #            timer.checkpoint('after computeLikelihoodOfXk')
@@ -439,7 +439,7 @@ class ForwardX(ArrayStepShared):
 
                 if n==5 and t==0:
                     import pdb; pdb.set_trace()
-                    print '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\nX0:\n',Xn[:,t],'\nZ_pos:\n',Z_pos,'\nXZ_t:\n',XZ_t,'\nprod_other_k:\n',prod_other_k,'\n1-L:\n',(1-self.L[pos_O_idx_n_t]),'\nunmult_off\n',1-(1-self.L[pos_O_idx_n_t])* prod_other_k,'\npOFF:\n',pOt_GIVEN_Xt[0,:,t],'\nZ_factor\n',np.prod(1-self.Z[:,np.logical_not(pos_O_idx_n_t)], axis=1),'\nunmult_ON:\n', (1 - (1-self.L[pos_O_idx_n_t])*(1-Z_pos)*prod_other_k),'\npON\n',np.prod(1-self.Z[:,np.logical_not(pos_O_idx_n_t)], axis=1)*np.prod(1 - (1-self.L[pos_O_idx_n_t])*(1-Z_pos)*prod_other_k, axis=1),'\nnorm:\n',pOt_GIVEN_Xt[:,:,0] / np.sum(pOt_GIVEN_Xt[:,:,0],axis=0), '\nbeta\n', beta, '\n'
+                    print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\nX0:\n',Xn[:,t],'\nZ_pos:\n',Z_pos,'\nXZ_t:\n',XZ_t,'\nprod_other_k:\n',prod_other_k,'\n1-L:\n',(1-self.L[pos_O_idx_n_t]),'\nunmult_off\n',1-(1-self.L[pos_O_idx_n_t])* prod_other_k,'\npOFF:\n',pOt_GIVEN_Xt[0,:,t],'\nZ_factor\n',np.prod(1-self.Z[:,np.logical_not(pos_O_idx_n_t)], axis=1),'\nunmult_ON:\n', (1 - (1-self.L[pos_O_idx_n_t])*(1-Z_pos)*prod_other_k),'\npON\n',np.prod(1-self.Z[:,np.logical_not(pos_O_idx_n_t)], axis=1)*np.prod(1 - (1-self.L[pos_O_idx_n_t])*(1-Z_pos)*prod_other_k, axis=1),'\nnorm:\n',pOt_GIVEN_Xt[:,:,0] / np.sum(pOt_GIVEN_Xt[:,:,0],axis=0), '\nbeta\n', beta, '\n')
                     #print '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n:L', self.L[pos_O_idx_n_t], '\nX0', Xn[:,t], '\n'
                     #print '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!nX0', Xn[:,t], '\n'
                     #print pOt_GIVEN_Xt[:,:,0] / np.sum(pOt_GIVEN_Xt[:,:,0],axis=0), '\nZ[0:10,0]:', Z_pos[0:10,0], '\nL[0:10]', self.L[pos_O_idx_n_t][0:10],'\n', 'Z_factor:', np.prod(1-self.Z[:,np.logical_not(pos_O_idx_n_t)], axis=1),'\n1-L:', (1-self.L[pos_O_idx_n_t])[0:10], '\n'

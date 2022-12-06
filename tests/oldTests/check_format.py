@@ -27,29 +27,29 @@ def parse_args():
     return args.filename
 
 def print_summary(df):
-    print
-    print "Number of records: ", len(df)
-    print "------ SNIPPET --------"
-    print df.head()
-    print "------ STATS --------"
-    print "Number of unique patients: ", len(df.PatientID.unique())
-    print " -- Observation Timestamp "
-    print df.Timestamp.describe()
-    print " -- First Onset Time "
-    print df.FirstOnsetTime.describe()
-    print " -- Unique ICD9 Codes found: ", len(df.ICD9.unique())
-    print " -- Unique ICD9 COPD codes found: ", len(set(df.ICD9.unique().tolist()).intersection(
-          set(COPD_CODES)))
+    print()
+    print("Number of records: ", len(df))
+    print("------ SNIPPET --------")
+    print(df.head())
+    print("------ STATS --------")
+    print("Number of unique patients: ", len(df.PatientID.unique()))
+    print(" -- Observation Timestamp ")
+    print(df.Timestamp.describe())
+    print(" -- First Onset Time ")
+    print(df.FirstOnsetTime.describe())
+    print(" -- Unique ICD9 Codes found: ", len(df.ICD9.unique()))
+    print(" -- Unique ICD9 COPD codes found: ", len(set(df.ICD9.unique().tolist()).intersection(
+          set(COPD_CODES))))
 
 
 def main():
     filename = parse_args()
 
     now = datetime.datetime.now()
-    print >> sys.stderr, "Reading file %s ..." % filename
+    print("Reading file %s ..." % filename, file=sys.stderr)
     df = read_file("%s/%s" % (DATA_DIR, filename))
-    print >> sys.stderr, "Done. Time elapsed: %.2f seconds" % \
-        (float((datetime.datetime.now() - now).microseconds) / 10**6)
+    print("Done. Time elapsed: %.2f seconds" % \
+        (float((datetime.datetime.now() - now).microseconds) / 10**6), file=sys.stderr)
 
     print_summary(df)
     

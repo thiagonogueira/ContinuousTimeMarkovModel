@@ -34,9 +34,9 @@ def timefunc(f):
         end = time.time()
         theArgs = inspect.getcallargs(f,*args)
         if 'self' in theArgs:
-            print(theArgs['self'].__class__.__name__, f.__name__, 'took', end - start, 'sec')
+            print((theArgs['self'].__class__.__name__, f.__name__, 'took', end - start, 'sec'))
         else:
-            print(f.__name__, 'took', end - start, 'sec')
+            print((f.__name__, 'took', end - start, 'sec'))
         return result
     return f_timer
 
@@ -58,12 +58,12 @@ class timewith():
         return diff
 
     def checkpoint(self, name=''):
-        print('{timer} {checkpoint} at {elapsed} took {delta} seconds').format(
+        print(('{timer} {checkpoint} at {elapsed} took {delta} seconds').format(
             timer=self.name,
             checkpoint=name,
             elapsed=self.elapsed,
             delta=self.delta,
-        ).strip()
+        ).strip())
 
     def __enter__(self):
         return self
